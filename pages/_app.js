@@ -1,18 +1,57 @@
-import "../styles/globals.css";
-import Layout from "../components/Layout";
+import * as React from "react";
+import PropTypes from "prop-types";
+import Head from "next/head";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { CacheProvider } from "@emotion/react";
+import theme from "../src/theme";
+import createEmotionCache from "../src/createEmotionCache";
+
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
+import Layout from '../components/Layout'
+import { createStore, applyMiddleware } from "redux";
 
-const store = createStore(() => [], {}, applyMiddleware())
+// Client-side cache shared for the whole session
+// of the user in the browser.
 
-function MyApp({ Component, pageProps }) {
+const clientSideEmotionCache = createEmotionCache();
+
+const store = createStore(()=>[], {}, applyMiddleware());
+
+export default function MyApp(props) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
-    <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, 
+                consistent, and simple baseline to
+                build upon. */}
+
+        <CssBaseline />
+        <Provider store={store}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
-export default MyApp;
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  emotionCache: PropTypes.object,
+  pageProps: PropTypes.object.isRequired,
+};
+
+{
+  /* <Provider store={store}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider> */
+}

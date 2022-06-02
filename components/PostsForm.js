@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { Component } from "react";
 
 export class PostsForm extends Component {
@@ -61,7 +62,7 @@ export class PostsForm extends Component {
             />
           </div>
           <br />
-          <button type="submit">Submit</button>
+          <Button type="submit" variant="outlined">Submit</Button>
         </form>
       </div>
     );
