@@ -8,7 +8,9 @@ const Header = () => {
         <Typography variant='h1' className={headerStyles.title}>
           <span>WebDev</span> News
         </Typography>
-        <p className={headerStyles.description}>Keep up to date with the latest web dev news</p>
+        <Typography className={headerStyles.description} variant='caption'>Keep up to date with the latest web dev news</Typography>
+        <hr/>
+        <br/>
     </div>
   )
 }

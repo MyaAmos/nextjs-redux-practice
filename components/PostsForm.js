@@ -41,6 +41,7 @@ export class PostsForm extends Component {
     return (
       <div>
         <Typography variant='h4'>Add Post</Typography>
+        <br/>
         <form onSubmit={this.onSubmit}>
           <div>
             <label>Title: </label>
@@ -65,6 +66,7 @@ export class PostsForm extends Component {
           <br />
           <Button type="submit" variant="outlined">Submit</Button>
         </form>
+        <br />
       </div>
     );
   }

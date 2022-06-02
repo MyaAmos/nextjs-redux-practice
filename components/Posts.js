@@ -26,7 +26,8 @@ export class Posts extends Component {
     ));
     return (
       <div>
-        <h1>Posts</h1>
+        <Typography variant="h4">Posts</Typography>
+        <br/>
         {postItems}
       </div>
     );
