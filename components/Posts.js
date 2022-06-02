@@ -1,4 +1,6 @@
+import { Typography } from "@mui/material";
 import React, { Component } from "react";
+import postStyles from '../styles/Posts.module.css'
 
 export class Posts extends Component {
   constructor(props) {
@@ -17,8 +19,9 @@ export class Posts extends Component {
   render() {
     const postItems = this.state.posts.map((post) => (
       <div key={post.id}>
-        <h3>{post.title}</h3>
-        <p>{post.body}</p>
+        <Typography variant="h5" className={postStyles.title}>{post.title}</Typography>
+        <Typography variant="body1">{post.body}</Typography>
+        <br/>
       </div>
     ));
     return (

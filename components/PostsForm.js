@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import React, { Component } from "react";
+import { Typography } from "@mui/material";
 
 export class PostsForm extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ export class PostsForm extends Component {
   render() {
     return (
       <div>
-        <h1>Add Post</h1>
+        <Typography variant='h4'>Add Post</Typography>
         <form onSubmit={this.onSubmit}>
           <div>
             <label>Title: </label>
