@@ -1,11 +1,15 @@
 import { Button } from "@mui/material";
 import React, { Component } from "react";
 import { Typography } from "@mui/material";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
+import { createPost } from "../src/actions/postActions";
 
 export class PostsForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 101,
       title: "",
       body: "",
     };
@@ -26,15 +30,7 @@ export class PostsForm extends Component {
       body: this.state.body,
     };
 
-    fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    this.props.createPost(post);
   }
 
   render() {
@@ -72,4 +68,8 @@ export class PostsForm extends Component {
   }
 }
 
-export default PostsForm;
+PostsForm.propTypes ={
+  createPost: PropTypes.func.isRequired
+}
+
+export default connect(null, { createPost })(PostsForm);
