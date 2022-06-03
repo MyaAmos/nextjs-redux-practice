@@ -9,14 +9,13 @@ import createEmotionCache from "../src/createEmotionCache";
 
 import { Provider } from "react-redux";
 import Layout from '../components/Layout'
-import { createStore, applyMiddleware } from "redux";
 
 // Client-side cache shared for the whole session
 // of the user in the browser.
 
 const clientSideEmotionCache = createEmotionCache();
 
-const store = createStore(()=>[], {}, applyMiddleware());
+import store from '../components/store';
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
